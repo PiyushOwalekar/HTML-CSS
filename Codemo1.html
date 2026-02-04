@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Demo Location</title>
+         <style>
+
+ body{
+    margin:0;
+    height:100vh;
+    overflow:hidden;
+    font-family: Arial, sans-serif;
+}
+
+/* ================== Animated Background ================== */
+
+.circles-background{
+    position:fixed;
+    inset:0;
+    background:
+        linear-gradient(135deg, rgba(255,255,255,0.7) 25%, transparent 25%) 0 0 / 110px 110px,
+        linear-gradient(315deg, rgba(255,255,255,0.7) 25%, transparent 25%) 0 0 / 110px 110px,
+        linear-gradient(45deg, khaki 50%, transparent 50%) 55px 55px / 110px 110px,
+        linear-gradient(225deg, skyblue 50%, transparent 50%) 55px 55px / 110px 110px,
+        linear-gradient(45deg, pink 50%, transparent 50%) 25px 80px / 110px 110px,
+        snow;
+    background-blend-mode:multiply;
+    opacity:var(--op);
+    transition:opacity 3s ease-in-out;
+}
+
+
+/* ================== Main Card ================== */
+
+.card{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:rgba(255,255,255,0.9);
+    padding:35px 50px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
+
+/* ================== Button ================== */
+
+button{
+    padding:14px 35px;
+    font-size:18px;
+    border:none;
+    border-radius:25px;
+    background:#ff7f50;
+    color:white;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:#ff4500;
+    box-shadow:0 0 15px #ff7f50;
+    transform:scale(1.1);
+}
+
+/* ================== Coordinates ================== */
+
+#loc{
+    margin-top:25px;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.show{
+    opacity:1 !important;
+}
+
+#demo{
+    margin-top:20px;
+    font-size:18px;
+    font-weight:bold;
+    opacity:0;
+    transition:opacity 0.5s ease-in-out;
+}
+
+    </style>
+</head>
+<body>
+    <div class="circles-background" style="--p1: 0px 0px; --p2: 55px 55px; --p3: 25px 80px; --op: 0.6;"></div>
+    
+    <div class="card">
+        <h1>Location Finder</h1>
+        <button onclick="getLocation()">Show My Location</button>
+        <p id="demo"></p>
+    </div>
+
+    <script>
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    const demo = document.getElementById("demo");
+                    demo.innerHTML = "Latitude: " + position.coords.latitude.toFixed(6) + "<br>Longitude: " + position.coords.longitude.toFixed(6);
+                    demo.classList.add('show');
+                }, function() {
+                    const demo = document.getElementById("demo");
+                    demo.innerHTML = "Error getting location.";
+                    demo.classList.add('show');
+                });
+            } else {
+                const demo = document.getElementById("demo");
+                demo.innerHTML = "Geolocation not supported.";
+                demo.classList.add('show');
+            }
+        }
+    </script>
+</body>
+</html>
