@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    :root {
+      --bg-color: #ffffff;
+      --text-color: #333333;
+    }
+
+    .dark {
+      --bg-color: #000000;
+      --text-color: #ecf0f1;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      font-family: sans-serif;
+      transition: 0.3s;
+    }
+
+    button {
+        Text:red;
+    }
+        
+
+  </style>
+</head>
+<body class="dark">
+  <h1>Theme Change</h1>
+  <p>Background Change</p>
+  <p>The  Dark Theme</p>
+  <button onclick="document.body.classList.toggle('dark')">Toggle Theme</button>
+</body>
+</html>
