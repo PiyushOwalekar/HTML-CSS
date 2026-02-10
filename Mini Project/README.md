@@ -91,5 +91,4 @@ This is a demonstration project created for educational purposes.
 
 ---
 
-**Created with ❤️ by Antigravity AI**  
-Inspired by BetterHelp.com
+**Created with ❤️ by Piyush Owalekar 
