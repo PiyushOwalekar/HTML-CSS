@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Split Screen Flexbox</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+}
+
+.split{
+    display:flex;
+    flex:1;
+}
+
+.section{
+    flex:1;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:60px;
+    color:#fff;
+    opacity:0;
+    animation:fadeIn 1.2s ease forwards;
+}
+
+.section:first-child{
+    background:#0f2027;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    animation-delay:0.3s;
+}
+
+.section:last-child{
+    background:#834d9b;
+    background:linear-gradient(135deg,#834d9b,#d04ed6);
+    animation-delay:0.8s;
+}
+
+.content{
+    max-width:400px;
+    text-align:center;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+}
+
+h1{
+    font-size:34px;
+    letter-spacing:1px;
+}
+
+p{
+    font-size:15px;
+    line-height:1.6;
+}
+
+button{
+    padding:12px 30px;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    background:#fff;
+    color:#333;
+    transition:0.3s ease;
+}
+
+button:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 25px rgba(0,0,0,0.3);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:768px){
+    body{
+        flex-direction:column;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="split">
+    <div class="section">
+        <div class="content">
+            <h1>Left Panel</h1>
+            <p>50</p>
+            <button>Explore</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="content">
+            <h1>Right Panel</h1>
+            <p>100</p>
+            <button>Discover</button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

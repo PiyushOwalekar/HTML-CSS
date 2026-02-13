@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertical Timeline</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+    background:#f4f6f8;
+    padding:60px 20px;
+}
+
+.timeline{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+}
+
+.timeline::before{
+    content:"";
+    position:absolute;
+    width:4px;
+    background:#ccc;
+    top:0;
+    bottom:0;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.event{
+    width:45%;
+    background:#fff;
+    padding:20px;
+    border-radius:8px;
+    box-shadow:0 5px 15px rgba(0,0,0,0.1);
+    margin:20px 0;
+    position:relative;
+}
+
+.event.left{
+    align-self:flex-start;
+}
+
+.event.right{
+    align-self:flex-end;
+}
+
+.event::before{
+    content:"";
+    position:absolute;
+    top:25px;
+    width:15px;
+    height:15px;
+    background:#ff6b6b;
+    border-radius:50%;
+    animation:pulse 2s infinite;
+}
+
+.event.left::before{
+    right:-33px;
+}
+
+.event.right::before{
+    left:-33px;
+}
+
+@keyframes pulse{
+    0%{
+        transform:scale(1);
+        opacity:1;
+    }
+    50%{
+        transform:scale(1.4);
+        opacity:0.6;
+    }
+    100%{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+@media(max-width:768px){
+    .timeline::before{
+        left:8px;
+    }
+
+    .event{
+        width:100%;
+        padding-left:40px;
+    }
+
+    .event.left,
+    .event.right{
+        align-self:flex-start;
+    }
+
+    .event::before{
+        left:0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="timeline">
+
+    <div class="event left">
+        <h3>2022</h3>
+        <p>Started learning Web Development</p>
+    </div>
+
+    <div class="event right">
+        <h3>2023</h3>
+        <p>Built multiple responsive projects</p>
+    </div>
+
+    <div class="event left">
+        <h3>2024</h3>
+        <p>Focused on advanced CSS and animations</p>
+    </div>
+
+    <div class="event right">
+        <h3>2025</h3>
+        <p>Working on full-stack applications</p>
+    </div>
+
+</div>
+
+</body>
+</html>

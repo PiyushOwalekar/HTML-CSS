@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Background Section</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+}
+
+.section{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    color:#fff;
+    background:linear-gradient(-45deg,#ff6a00,#ee0979,#00c6ff,#0072ff);
+    background-size:400% 400%;
+    animation:gradientMove 10s ease infinite;
+}
+
+.content{
+    max-width:600px;
+    opacity:0;
+    animation:textFade 2s ease forwards;
+    animation-delay:1s;
+}
+
+h1{
+    font-size:48px;
+    margin-bottom:20px;
+    letter-spacing:2px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.6;
+}
+
+@keyframes gradientMove{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
+}
+
+@keyframes textFade{
+    from{
+        opacity:0;
+        transform:translateY(40px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="section">
+    <div class="content">
+        <h1>Dynamic Gradient Background</h1>
+        <p>Rainbow code 🌈</p>
+    </div>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Navigation</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:15px 40px;
+    background:#222;
+}
+
+.logo{
+    color:#fff;
+    font-size:20px;
+    font-weight:bold;
+}
+
+.nav-links{
+    display:flex;
+    gap:30px;
+}
+
+.nav-links a{
+    color:#fff;
+    text-decoration:none;
+    font-size:16px;
+    position:relative;
+    padding:5px 0;
+}
+
+.nav-links a::after{
+    content:"";
+    position:absolute;
+    left:0;
+    bottom:-3px;
+    width:0%;
+    height:2px;
+    background:#00ffff;
+    transition:width 0.3s ease;
+}
+
+.nav-links a:hover::after{
+    width:100%;
+}
+
+@media(max-width:768px){
+    nav{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .nav-links{
+        flex-direction:column;
+        width:100%;
+        margin-top:15px;
+        gap:15px;
+    }
+
+    .nav-links a{
+        width:100%;
+        padding:10px 0;
+        border-top:1px solid #444;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">MyWebsite</div>
+    <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Portfolio</a>
+        <a href="#">Contact</a>
+    </div>
+</nav>
+
+</body>
+</html>

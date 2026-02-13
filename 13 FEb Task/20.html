@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Advanced Creative Section</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:#fff;
+}
+
+.section{
+    display:grid;
+    grid-template-columns:repeat(12,1fr);
+    align-items:center;
+    padding:100px 8%;
+    position:relative;
+    overflow:hidden;
+}
+
+.text-box{
+    grid-column:2 / 7;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    z-index:2;
+    opacity:0;
+    animation:slideIn 1.2s ease forwards;
+}
+
+.text-box h1{
+    font-size:42px;
+    line-height:1.2;
+}
+
+.text-box p{
+    font-size:16px;
+    color:#cbd5e1;
+    line-height:1.6;
+}
+
+.text-box button{
+    width:150px;
+    padding:12px;
+    border:none;
+    border-radius:30px;
+    background:#38bdf8;
+    color:#000;
+    cursor:pointer;
+    transition:0.4s;
+    animation:pulse 2s infinite;
+}
+
+.text-box button:hover{
+    transform:translateY(-6px);
+}
+
+.image-box{
+    grid-column:6 / 12;
+    position:relative;
+    z-index:1;
+    opacity:0;
+    animation:fadeUp 1.5s ease forwards;
+    animation-delay:0.4s;
+}
+
+.image-box img{
+    width:100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius:20px;
+    transform:scale(0.9);
+    animation:zoomIn 1.5s ease forwards;
+    animation-delay:0.8s;
+}
+
+.shape{
+    position:absolute;
+    width:250px;
+    height:250px;
+    background:linear-gradient(135deg,#9333ea,#f43f5e);
+    border-radius:30px;
+    top:50px;
+    left:55%;
+    z-index:0;
+    opacity:0.4;
+    animation:float 6s ease-in-out infinite;
+}
+
+@keyframes slideIn{
+    from{opacity:0; transform:translateX(-60px);}
+    to{opacity:1; transform:translateX(0);}
+}
+
+@keyframes fadeUp{
+    from{opacity:0; transform:translateY(60px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes zoomIn{
+    from{transform:scale(0.8);}
+    to{transform:scale(1);}
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-25px);}
+    100%{transform:translateY(0);}
+}
+
+@keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(56,189,248,0.6);}
+    70%{box-shadow:0 0 0 15px rgba(56,189,248,0);}
+    100%{box-shadow:0 0 0 0 rgba(56,189,248,0);}
+}
+
+@media(max-width:992px){
+    .section{
+        grid-template-columns:1fr;
+    }
+
+    .text-box{
+        grid-column:1;
+        text-align:center;
+        align-items:center;
+    }
+
+    .image-box{
+        grid-column:1;
+        margin-top:40px;
+    }
+
+    .shape{
+        left:50%;
+        transform:translateX(-50%);
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="section">
+    <div class="shape"></div>
+
+    <div class="text-box">
+        <h1>Creative Overlapping Layout</h1>
+        <p>Truck Wala</p>
+        <button>Get Started</button>
+    </div>
+
+    <div class="image-box">
+        <img src="https://i.pinimg.com/1200x/51/bf/c4/51bfc430655599955d23a79546ea4b74.jpg">
+    </div>
+</section>
+
+</body>
+</html>

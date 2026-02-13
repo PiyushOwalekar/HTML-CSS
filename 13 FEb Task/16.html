@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Footer</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    display:flex;
+    flex-direction:column;
+    min-height:100vh;
+}
+
+main{
+    flex:1;
+}
+
+footer{
+    background:#111;
+    color:#ccc;
+    padding:60px 8% 30px;
+}
+
+.footer-container{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:40px;
+}
+
+.footer-col{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+}
+
+.footer-col h3{
+    color:#fff;
+    margin-bottom:10px;
+}
+
+.footer-col a{
+    text-decoration:none;
+    color:#ccc;
+    font-size:14px;
+    transition:0.3s ease;
+}
+
+.footer-col a:hover{
+    color:#00c6ff;
+    transform:translateX(5px);
+}
+
+.social{
+    display:flex;
+    gap:15px;
+}
+
+.social a{
+    width:35px;
+    height:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    background:#222;
+    color:#fff;
+    font-size:14px;
+    transition:0.3s ease;
+}
+
+.social a:hover{
+    background:#00c6ff;
+    transform:translateY(-5px);
+}
+
+.footer-bottom{
+    margin-top:40px;
+    text-align:center;
+    font-size:13px;
+    border-top:1px solid #222;
+    padding-top:20px;
+    color:#777;
+}
+
+@media(max-width:992px){
+    .footer-container{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .footer-container{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<main></main>
+
+<footer>
+    <div class="footer-container">
+
+        <div class="footer-col">
+            <h3>Company</h3>
+            <a href="#">About Us</a>
+            <a href="#">Careers</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+        </div>
+
+        <div class="footer-col">
+            <h3>Services</h3>
+            <a href="#">Web Design</a>
+            <a href="#">Development</a>
+            <a href="#">SEO</a>
+            <a href="#">Marketing</a>
+        </div>
+
+        <div class="footer-col">
+            <h3>Support</h3>
+            <a href="#">Help Center</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">FAQs</a>
+        </div>
+
+        <div class="footer-col">
+            <h3>Follow Us</h3>
+            <div class="social">
+                <a href="#">K</a>
+                <a href="#">I</a>
+                <a href="#">N</a>
+                <a href="#">G</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        © 2026 Made By King Piyush
+    </div>
+</footer>
+
+</body>
+</html>

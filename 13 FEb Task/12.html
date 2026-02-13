@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magazine Layout</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Georgia, serif;
+    background:#f4f4f4;
+    padding:60px 8%;
+}
+
+.magazine{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:25px;
+}
+
+.article{
+    background:#fff;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.08);
+    opacity:0;
+    animation:fadeIn 1s ease forwards;
+}
+
+.article:nth-child(2){ animation-delay:0.3s; }
+.article:nth-child(3){ animation-delay:0.6s; }
+.article:nth-child(4){ animation-delay:0.9s; }
+.article:nth-child(5){ animation-delay:1.2s; }
+
+.featured{
+    grid-column:span 2;
+}
+
+.article img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:8px;
+    margin-bottom:15px;
+}
+
+.article h2{
+    margin-bottom:10px;
+}
+
+.article p{
+    font-size:14px;
+    color:#555;
+    line-height:1.6;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+@media(max-width:992px){
+    .magazine{
+        grid-template-columns:repeat(2, 1fr);
+    }
+}
+
+@media(max-width:600px){
+    .magazine{
+        grid-template-columns:1fr;
+    }
+
+    .featured{
+        grid-column:span 1;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="magazine">
+
+    <div class="article featured">
+        <img src="https://i.pinimg.com/originals/04/7b/e5/047be5848ee1acff7aa9c262066b17c3.png">
+        <h2>Featured Story</h2>
+        <p>This featured article spans two columns and highlights the main story of the magazine layout design</p>
+    </div>
+
+    <div class="article">
+        <img src="https://i.pinimg.com/1200x/95/9a/36/959a364d1f8e09d8897d7b1c5981f84e.jpg">
+        <h2>Travel</h2>
+        <p>Discover beautiful destinations and hidden gems around the world</p>
+    </div>
+
+    <div class="article">
+        <img src="https://i.pinimg.com/736x/ec/40/20/ec4020756e66c4040e10b0c7899a5cd3.jpg">
+        <h2>Technology</h2>
+        <p>Latest trends and innovations shaping the digital future</p>
+    </div>
+
+    <div class="article">
+        <img src="https://i.pinimg.com/736x/03/3b/62/033b62c5fcaeaf10549c6a23a5635ef9.jpg">
+        <h2>Lifestyle</h2>
+        <p>Tips and ideas to improve daily life and well-being</p>
+    </div>
+
+    <div class="article">
+        <img src="https://i.pinimg.com/736x/76/1a/e1/761ae13bbc5a70a569fef997f9878ad6.jpg">
+        <h2>Business</h2>
+        <p>Insights and strategies for modern entrepreneurs and startups</p>
+    </div>
+
+</div>
+
+</body>
+</html>

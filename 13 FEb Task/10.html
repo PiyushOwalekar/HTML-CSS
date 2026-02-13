@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Floating Testimonials</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, sans-serif;
+}
+
+.testimonials-section{
+    padding:80px 10%;
+    background:linear-gradient(135deg,#89f7fe,#66a6ff);
+    background-size:200% 200%;
+    animation:bgMove 8s ease infinite alternate;
+}
+
+.testimonials{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+.card{
+    background:#fff;
+    padding:30px;
+    width:280px;
+    border-radius:15px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.15);
+    text-align:center;
+    animation:float 4s ease-in-out infinite;
+}
+
+.card:nth-child(2){
+    animation-delay:1s;
+}
+
+.card:nth-child(3){
+    animation-delay:2s;
+}
+
+.card img{
+    width:70px;
+    height:70px;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+
+.card h3{
+    margin-bottom:10px;
+}
+
+.card p{
+    font-size:14px;
+    color:#555;
+}
+
+@keyframes float{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-20px);
+    }
+}
+
+@keyframes bgMove{
+    0%{
+        background-position:0% 50%;
+    }
+    100%{
+        background-position:100% 50%;
+    }
+}
+
+@media(max-width:768px){
+    .testimonials{
+        flex-direction:column;
+        align-items:center;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="testimonials-section">
+    <div class="testimonials">
+
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/16/2e/3b/162e3bba418b5f7ba2935cc46d670ce1.jpg">
+            <h3>Sarah</h3>
+            <p>Excellent service and amazing support throughout the project</p>
+        </div>
+
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/04/46/1f/04461f911d737adbd177872e88dcca16.jpg">
+            <h3>Michael</h3>
+            <p>Professional design and smooth user experience. Highly recommended</p>
+        </div>
+
+        <div class="card">
+            <img src="https://i.pinimg.com/736x/33/6a/d5/336ad57043834d26fa1a9faa378866e0.jpg">
+            <h3>Emily</h3>
+            <p>Creative solutions and fast delivery. Truly impressive work</p>
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>
