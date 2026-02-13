@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Animated Profile Card</title>
+
+<style>
+
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#74ebd5,#9face6);
+    font-family:Arial, sans-serif;
+}
+
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.card{
+    width:280px;
+    background:#fff;
+    padding:30px 20px;
+    text-align:center;
+    border-radius:15px;
+    box-shadow:0 15px 30px rgba(0,0,0,0.2);
+    animation:fadeIn 1s ease-in-out;
+    transition:transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover{
+    transform:translateY(-12px);
+    box-shadow:0 25px 40px rgba(0,0,0,0.3);
+}
+
+.card img{
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    margin-bottom:15px;
+}
+
+.card h2{
+    margin:10px 0 5px;
+}
+
+.card p{
+    color:gray;
+    font-size:14px;
+}
+
+.social-icons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    margin-top:20px;
+}
+
+.social-icons a{
+    width:35px;
+    height:35px;
+    background:#3498db;
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:50%;
+    text-decoration:none;
+    transition:0.3s;
+}
+
+.social-icons a:hover{
+    background:#2c3e50;
+}
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <div class="card">
+        <img src="https://i.pinimg.com/736x/ab/7f/ba/ab7fbab38dca010502b394885f9da36a.jpg" alt="Profile">
+        <h2>Satvik 🐍</h2>
+        <p>Frontend Developer</p>
+
+        <div class="social-icons">
+            <a href="#">F</a>
+            <a href="#">T</a>
+            <a href="#">L</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
