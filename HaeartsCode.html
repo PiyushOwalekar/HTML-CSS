@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>My Love ❤️</title>
+
+<style>
+
+body{
+
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-family:Arial;
+overflow:hidden;
+background:linear-gradient(270deg,#ff0080,#7928ca,#ff4d6d);
+background-size:600% 600%;
+animation:bg 10s infinite;
+perspective: 1000px;
+}
+
+@keyframes bg{
+
+0%{background-position:0%}
+50%{background-position:100%}
+100%{background-position:0%}
+
+}
+
+
+
+/* container */
+
+.container{
+
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:30px;
+
+padding:40px;
+
+border-radius:20px;
+
+background:rgba(255,255,255,0.08);
+
+backdrop-filter:blur(15px);
+
+box-shadow:0 20px 50px rgba(0,0,0,0.3), inset 0 0 20px rgba(255,255,255,0.2);
+
+animation:float 5s infinite ease-in-out;
+
+}
+
+@keyframes float{
+
+50%{transform:translateY(-20px)}
+
+}
+
+
+
+/* title */
+
+.title{
+
+font-size:45px;
+font-weight: bold;
+text-shadow: 0 0 20px rgba(255,255,255,0.5);
+text-align: center;
+
+background: linear-gradient(90deg, #fff, #ffd700, #fff);
+background-clip: text;
+-webkit-background-clip: text;
+color:transparent;
+}
+
+
+
+/* REAL ENVELOPE */
+
+.envelope{
+
+position:relative;
+
+width:260px;
+height:160px;
+
+cursor:pointer;
+
+}
+
+
+.body{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(45deg,#ff4d6d,#ff758f);
+
+border-radius:10px;
+
+}
+
+
+.flap{
+
+position:absolute;
+
+width:100%;
+height:100%;
+
+background:linear-gradient(45deg,#ff758f,#ff4d6d);
+
+clip-path:polygon(0 0,100% 0,50% 60%);
+
+transform-origin:top;
+
+transition:1s;
+
+}
+
+
+.letter{
+
+position:absolute;
+
+width:90%;
+height:80%;
+
+background:white;
+
+left:5%;
+top:10%;
+
+border-radius:10px;
+
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+font-weight:bold;
+
+color:#ff4d6d;
+
+opacity: 0;
+transform:translateY(120%);
+z-index: -1;
+
+transition: 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+padding: 20px;
+}
+
+
+
+.open .flap{
+
+transform:rotateX(180deg);
+
+}
+
+.open .letter{
+
+opacity: 1;
+transform: translateY(-50px) scale(1.1);
+z-index: 2;
+}
+
+
+
+/* 3D HEART */
+
+.heart{
+
+font-size:80px;
+
+animation:
+
+beat 1s infinite,
+rotate 6s infinite linear;
+
+filter:drop-shadow(0 0 20px red);
+
+}
+
+@keyframes beat{
+
+50%{transform:scale(1.3)}
+
+}
+
+@keyframes rotate{
+
+100%{transform:rotateY(360deg)}
+
+}
+
+
+
+/* button */
+
+button{
+
+padding:15px 40px;
+
+border:none;
+
+border-radius:30px;
+
+font-size:20px;
+font-weight: bold;
+
+background:linear-gradient(45deg,#ff0080,#ff8c00);
+
+color:white;
+
+cursor:pointer;
+
+box-shadow:0 0 20px red;
+
+transition: 0.3s;
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 40px #ff0080;
+}
+
+
+/* fireworks */
+
+canvas{
+
+position:absolute;
+top:0;
+left:0;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<canvas id="canvas"></canvas>
+
+
+<div class="container">
+
+
+<div class="title">
+
+Happy Valentine's Day ❤️
+
+</div>
+
+
+
+<div class="envelope" onclick="openEnvelope()" id="env">
+
+<div class="body"></div>
+
+<div class="flap"></div>
+
+<div class="letter">
+
+I am Single🙈
+
+</div>
+
+</div>
+
+
+
+<div class="heart">
+
+❤️
+
+</div>
+
+
+
+<button onclick="explode()">
+
+Send Love 💘
+
+</button>
+
+
+</div>
+
+
+
+<script>
+
+
+
+function openEnvelope(){
+
+document.getElementById("env").classList.toggle("open")
+
+}
+
+
+
+// PARTICLE FIREWORKS
+
+canvas.width=window.innerWidth
+
+canvas.height=window.innerHeight
+
+let ctx=canvas.getContext("2d")
+
+
+
+let particles=[]
+
+
+
+function create(){
+
+
+let x=Math.random()*canvas.width
+
+let y=Math.random()*canvas.height
+
+
+for(let i=0;i<80;i++){
+
+particles.push({
+
+x,y,
+
+dx:(Math.random()-0.5)*6,
+
+dy:(Math.random()-0.5)*6,
+
+life:100
+
+})
+
+}
+
+}
+
+
+
+function draw(){
+
+ctx.clearRect(0,0,canvas.width,canvas.height)
+
+
+particles.forEach((p,i)=>{
+
+p.x+=p.dx
+
+p.y+=p.dy
+
+p.life--
+
+ctx.beginPath();
+ctx.arc(p.x, p.y, 2, 0, Math.PI * 2);
+ctx.fillStyle="hsla("+Math.random()*360+",100%,70%,"+(p.life/100)+")"
+ctx.fill();
+
+p.dy += 0.05; // gravity
+
+if(p.life<=0)
+
+particles.splice(i,1)
+
+})
+
+
+requestAnimationFrame(draw)
+
+}
+
+
+
+setInterval(create,700)
+
+draw()
+
+
+
+// EXPLOSION
+
+function explode(){
+
+
+for(let i=0;i<30;i++){
+
+let h=document.createElement("div")
+
+h.innerHTML="❤️"
+
+h.style.position="fixed"
+
+h.style.left=window.innerWidth/2 + "px"
+
+h.style.top=window.innerHeight/2 + "px"
+
+h.style.pointerEvents="none"
+
+document.body.appendChild(h)
+
+
+let x=(Math.random()-0.5)*600
+
+let y=(Math.random()-0.5)*600
+
+
+h.animate(
+
+[
+
+{transform:"translate(0,0)"},
+
+{transform:`translate(${x}px,${y}px)`}
+
+],
+
+{duration:1000}
+
+)
+
+
+setTimeout(()=>h.remove(),1000)
+
+}
+
+}
+
+
+
+// cursor hearts
+
+document.addEventListener("mousemove",e=>{
+
+
+let h=document.createElement("div")
+
+h.innerHTML="❤️"
+
+h.style.position="fixed"
+
+h.style.left=e.pageX+"px"
+
+h.style.top=e.pageY+"px"
+
+h.style.pointerEvents="none"
+
+h.style.fontSize="12px"
+
+document.body.appendChild(h)
+
+setTimeout(()=>h.remove(),400)
+
+})
+
+
+
+</script>
+
+</body>
+</html>
