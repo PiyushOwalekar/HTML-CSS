@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spaceship Animation</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .scene {
+            height: 100vh;
+            width: 100vw;
+            perspective: 800px;
+            perspective-origin: 50% 50%;
+            transform-style: preserve-3d;
+        }
+
+        .starfield {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(1px 1px at 20px 30px, #eee, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 40px 70px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 50px 160px, #ddd, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 90px 40px, #fff, rgba(0,0,0,0)),
+                radial-gradient(2px 2px at 150px 100px, #fff, rgba(0,0,0,0)),
+                radial-gradient(1px 1px at 120px 140px, #ddd, rgba(0,0,0,0));
+            background-repeat: repeat;
+            background-size: 200px 200px;
+            animation: move-starfield 5s linear infinite;
+            transform: translateZ(-500px);
+        }
+
+        @keyframes move-starfield {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 0 200px;
+            }
+        }
+
+        .spaceship {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100px;
+            height: 50px;
+            transform-style: preserve-3d;
+            transform: translate(-50%, -50%) translateZ(0) rotateX(-20deg);
+            animation: bob 3s ease-in-out infinite;
+        }
+
+        @keyframes bob {
+            0%, 100% {
+                transform: translate(-50%, -50%) translateZ(0) rotateX(-20deg) translateY(0);
+            }
+            50% {
+                transform: translate(-50%, -50%) translateZ(0) rotateX(-20deg) translateY(-20px);
+            }
+        }
+
+        .spaceship-body {
+            position: absolute;
+            width: 100px;
+            height: 40px;
+            background: #ccc;
+            border-radius: 10px;
+            transform: rotateX(90deg) translateZ(-20px);
+        }
+
+        .cockpit {
+            position: absolute;
+            width: 40px;
+            height: 20px;
+            background: #77b5fe;
+            top: 5px;
+            left: 30px;
+            border-radius: 50%;
+            transform: rotateX(90deg) translateZ(0px);
+        }
+
+        .wing {
+            position: absolute;
+            width: 20px;
+            height: 60px;
+            background: #aaa;
+            border-radius: 5px;
+        }
+
+        .left-wing {
+            top: -5px;
+            left: -20px;
+            transform: rotateY(-90deg) rotateX(0deg);
+        }
+
+        .right-wing {
+            top: -5px;
+            right: -20px;
+            transform: rotateY(90deg) rotateX(0deg);
+        }
+
+        .tail {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #f44336;
+            bottom: 0px;
+            left: 40px;
+            transform: rotateX(90deg) translateZ(-40px);
+        }
+    </style>
+</head>
+<body>
+    <div class="scene">
+        <div class="starfield"></div>
+        <div class="spaceship">
+            <div class="spaceship-body"></div>
+            <div class="cockpit"></div>
+            <div class="wing left-wing"></div>
+            <div class="wing right-wing"></div>
+            <div class="tail"></div>
+        </div>
+    </div>
+</body>
+</html>
