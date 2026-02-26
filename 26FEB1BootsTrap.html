@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BMW | The Ultimate Driving Machine</title>
+<script src="https://unpkg.com/framer-motion@10.16.4/dist/framer-motion.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<script src="https://unpkg.com/scrollreveal"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+<style>
+body{
+padding-top:80px;
+margin: 0;
+overflow-x: hidden;
+scroll-behavior: smooth;
+scrollbar-width: thin;
+font-family: 'Inter', sans-serif;
+background-color: #05070a;
+color: #ffffff;
+}
+
+/* Ultra-Modern Glassmorphism */
+.glass-panel {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+}
+
+/* Animated Gradient Text */
+.text-gradient-animate {
+    background: linear-gradient(-45deg, #fff, #3b82f6, #60a5fa, #fff);
+    background-size: 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient-move 5s ease infinite;
+}
+
+@keyframes gradient-move {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Cyberpunk Glow Buttons */
+.btn-cyber {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    z-index: 1;
+}
+
+.btn-cyber::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.btn-cyber:hover::before {
+    left: 100%;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #05070a; }
+::-webkit-scrollbar-thumb { background: #3b82f6; border-radius: 10px; }
+
+/* Background Starfield Animation */
+.star-bg {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: -2;
+    background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+}
+
+/* Glassmorphism Hero */
+.hero{
+background: radial-gradient(circle at 20% 30%, rgba(30, 58, 138, 0.4) 0%, transparent 40%), 
+            radial-gradient(circle at 80% 70%, rgba(30, 27, 75, 0.4) 0%, #05070a 100%);
+color:white;
+padding:150px 20px;
+text-align:center;
+position: relative;
+overflow: hidden;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');
+    opacity: 0.1;
+}
+
+.animated-bg-svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+.floating-svg {
+    position: absolute;
+    pointer-events: none;
+    animation: float 10s infinite ease-in-out;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-50px) rotate(10deg); }
+    66% { transform: translateY(20px) rotate(-10deg); }
+}
+
+.glow-text { text-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
+
+/* Enhanced Gallery */
+.gallery img{
+height: 400px;
+width:100%;
+object-fit:cover;
+transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+border: 1px solid rgba(255,255,255,0.1);
+}
+
+footer{
+position:sticky;
+top:100%;
+border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 15px;
+}
+
+.carousel-item img {
+    height: 70vh;
+    object-fit: cover;
+    margin: 0 auto;
+    filter: brightness(0.7);
+}
+
+.gallery .col-md-4:hover img {
+    transform: scale(1.08) translateY(-10px);
+    box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.5);
+    border-color: #3b82f6;
+}
+
+.navbar {
+    backdrop-filter: blur(20px);
+    background-color: rgba(0,0,0,0.8) !important;
+}
+
+.btn-learn-more {
+    transition: all 0.4s ease;
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 12px 35px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-learn-more:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.6);
+    background-color: #ffc107 !important;
+    color: #000 !important;
+}
+
+.pricing-card:hover {
+    transform: translateY(-15px);
+    border-color: #3b82f6;
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.3);
+    background: linear-gradient(145deg, rgba(59, 130, 246, 0.15) 0%, rgba(5, 7, 10, 1) 100%);
+}
+
+.pricing-card .btn {
+    transition: all 0.3s ease;
+}
+
+.neon-border {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.text-gradient {
+    background: linear-gradient(to right, #fff, #3b82f6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.stat-card {
+    transition: transform 0.3s ease;
+}
+.stat-card:hover {
+    transform: scale(1.1);
+}
+
+/* Floating Particles Animation */
+.particle {
+    position: absolute;
+    background: rgba(59, 130, 246, 0.5);
+    border-radius: 50%;
+    bottom: -10px;
+    animation: rise 10s infinite ease-in;
+}
+
+@keyframes rise {
+    0% { transform: translateY(0) scale(1); opacity: 0; }
+    50% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(0.5); opacity: 0; }
+}
+
+.hover-rotate:hover {
+    transform: rotate(3deg) scale(1.05);
+}
+
+.flex-center-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.form-control:focus {
+    background-color: #1a1d21 !important;
+    color: white !important;
+    border-color: #3b82f6;
+}
+
+.booking-card {
+    background: linear-gradient(145deg, rgba(255,255,255,0.05) 0%, rgba(59,130,246,0.05) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    padding: 3rem;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* Advanced Animations */
+.hover-glow:hover {
+    filter: drop-shadow(0 0 15px rgba(59, 130, 246, 0.8));
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+}
+
+.parallax-bg {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.pulse-blue {
+    animation: pulse-blue 2s infinite;
+}
+
+@keyframes pulse-blue {
+    0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(59, 130, 246, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+/* Racing Car & Exhaust Flames Animation */
+.racing-scene {
+    position: relative;
+    height: 120px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 20px;
+}
+.race-car {
+    position: absolute;
+    bottom: 10px;
+    left: -200px;
+    width: 150px;
+    animation: race 3s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+.exhaust-flame {
+    position: absolute;
+    right: -30px;
+    bottom: 10px;
+    width: 60px;
+    height: 15px;
+    background: linear-gradient(to right, transparent, #ff4d00, #ffea00);
+    filter: blur(2px);
+    border-radius: 50%;
+    opacity: 0;
+    animation: backfire 0.2s ease-in-out infinite;
+}
+@keyframes race {
+    0% { left: -200px; transform: skewX(0deg) scale(0.7); }
+    20% { left: 10%; transform: skewX(-20deg) scale(1); }
+    80% { left: 80%; transform: skewX(-20deg) scale(1); }
+    100% { left: 120%; transform: skewX(-35deg) scale(1.2); }
+}
+@keyframes backfire {
+    0%, 100% { opacity: 0; transform: scaleX(0.5); }
+    50% { 
+        opacity: 1; 
+        transform: scaleX(1.5); 
+        box-shadow: -10px 0 20px #ff4d00;
+    }
+}
+
+.hp-animate {
+    display: inline-block;
+    animation: pulse-hp 1.5s ease-in-out infinite;
+}
+
+/* Comparison Table Enhancements */
+.comparison-table-container {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(59, 130, 246, 0.2);
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.comparison-table-container:hover {
+    border-color: rgba(59, 130, 246, 0.6);
+    box-shadow: 0 0 40px rgba(59, 130, 246, 0.2);
+}
+.comparison-table-container table {
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+.comparison-table-container thead th {
+    border: none;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.85rem;
+    padding: 20px;
+}
+.comparison-table-container tbody tr {
+    background: rgba(255, 255, 255, 0.02);
+    transition: all 0.3s ease;
+}
+.comparison-table-container tbody tr:hover {
+    background: rgba(59, 130, 246, 0.12) !important;
+    transform: scale(1.015) translateX(5px);
+}
+.comparison-table-container td {
+    padding: 20px !important;
+    border: none !important;
+}
+.comparison-table-container td:first-child {
+    border-radius: 12px 0 0 12px;
+    font-weight: 600;
+}
+.comparison-table-container td:last-child {
+    border-radius: 0 12px 12px 0;
+}
+@keyframes pulse-hp { 0%, 100% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.8; color: #ffc107; } }
+
+/* Neon Pulse for Cards */
+.neon-pulse {
+    animation: neon-glow 2s infinite alternate;
+}
+@keyframes neon-glow {
+    from { box-shadow: 0 0 5px rgba(59, 130, 246, 0.2); }
+    to { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6); }
+}
+
+.scroll-progress {
+    position: fixed;
+    top: 0; left: 0; height: 4px;
+    background: #3b82f6;
+    z-index: 9999;
+}
+</style>
+
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+<div class="star-bg"></div>
+
+<div class="scroll-progress" id="scrollBar"></div>
+
+<!-- Animated Particles -->
+<div class="particles-container" style="position: fixed; inset: 0; z-index: -1; overflow: hidden;">
+    <div class="particle" style="width: 5px; height: 5px; left: 10%; animation-duration: 8s;"></div>
+    <div class="particle" style="width: 8px; height: 8px; left: 30%; animation-duration: 12s; animation-delay: 2s;"></div>
+    <div class="particle" style="width: 4px; height: 4px; left: 70%; animation-duration: 10s; animation-delay: 4s;"></div>
+    <div class="particle" style="width: 6px; height: 6px; left: 90%; animation-duration: 15s; animation-delay: 1s;"></div>
+</div>
+
+<!-- OFFCANVAS -->
+
+<div class="offcanvas offcanvas-start" id="sidebar">
+
+<div class="offcanvas-header">
+<h5>Menu</h5>
+<button class="btn-close" data-bs-dismiss="offcanvas"></button>
+</div>
+
+<div class="offcanvas-body">
+
+<a href="#" class="d-block mb-3 text-decoration-none text-dark fw-bold">Home</a>
+<a href="#" class="d-block mb-3 text-decoration-none text-dark fw-bold">Pricing</a>
+<a href="#" class="d-block mb-3 text-decoration-none text-dark fw-bold">Gallery</a>
+<a href="#" class="d-block mb-3 text-decoration-none text-dark fw-bold">Contact</a>
+
+</div>
+</div>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+
+<div class="container">
+
+<button class="btn btn-outline-primary me-2"
+data-bs-toggle="offcanvas"
+data-bs-target="#sidebar">
+☰
+</button>
+
+<a class="navbar-brand fw-bold">BMW M Performance</a>
+
+<button class="navbar-toggler"
+data-bs-toggle="collapse"
+data-bs-target="#nav">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="nav">
+
+<ul class="navbar-nav me-auto">
+
+<li class="nav-item">
+<a class="nav-link active">Home</a>
+</li>
+
+<li class="nav-item dropdown">
+
+<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Models</a>
+
+<ul class="dropdown-menu">
+<li><a class="dropdown-item">M3 Competition</a></li>
+<li><a class="dropdown-item">M5 CS</a></li>
+<li><a class="dropdown-item">Marketing</a></li>
+
+</ul>
+
+</li>
+
+</ul>
+
+<form class="d-flex" role="search">
+<input class="form-control me-2" placeholder="Search">
+<button class="btn btn-primary d-flex align-items-center" type="submit">
+<i class="bi bi-search me-2"></i>
+Search
+</button>
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<div class="hero shadow">
+    <!-- SVG Background Animation -->
+    <svg class="animated-bg-svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M0 100 C 20 0 50 0 100 100 Z" fill="rgba(59, 130, 246, 0.05)">
+            <animate attributeName="d" dur="10s" repeatCount="indefinite" 
+                values="M0 100 C 20 0 50 0 100 100 Z; M0 100 C 30 50 70 50 100 100 Z; M0 100 C 20 0 50 0 100 100 Z" />
+        </path>
+    </svg>
+    
+    <div class="floating-svg" style="top: 10%; left: 5%; width: 100px;">
+        <svg viewBox="0 0 100 100" fill="none" stroke="#3b82f6" stroke-width="0.5"><circle cx="50" cy="50" r="40" stroke-dasharray="5,5"/></svg>
+    </div>
+    
+    <!-- Animated Line SVG -->
+    <svg class="position-absolute bottom-0 start-0 w-100" height="100" viewBox="0 0 1440 100" preserveAspectRatio="none">
+    <path fill="none" stroke="#3b82f6" stroke-width="3" d="M0,50 Q360,0 720,50 T1440,50" style="stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawLine 3s linear infinite; opacity: 0.8;"></path>
+    </svg>
+
+<h1 class="display-1 fw-bold mb-3 text-gradient-animate animate__animated animate__zoomIn glow-text">
+    THE ULTIMATE
+<span class="badge bg-primary text-white align-middle ms-2" style="font-size: 0.4em; vertical-align: middle; -webkit-text-fill-color: white;">M POWER</span>
+</h1>
+
+<p class="lead mb-5 fs-2 opacity-75 animate__animated animate__fadeInUp animate__delay-1s">
+Experience the pinnacle of German engineering.
+</p>
+
+<div class="racing-scene"></div>
+
+<div class="d-flex justify-content-center gap-3">
+    <button 
+    data-bs-toggle="modal" data-bs-target="#infoModal"
+    class="btn btn-light btn-learn-more pulse-blue btn-cyber">
+    <i class="bi bi-info-circle me-2"></i>Explore Specs
+    </button>
+    
+    <button data-bs-toggle="modal" data-bs-target="#galleryModal" class="btn btn-outline-light btn-learn-more border-2">
+        <i class="bi bi-camera me-2"></i>View Gallery
+    </button>
+</div>
+
+<style>
+@keyframes drawLine {
+    to { stroke-dashoffset: 0; }
+}
+</style>
+</div>
+
+
+<!-- ALERTS -->
+
+<div class="container mt-5 reveal">
+    <div class="row g-4 d-flex align-items-stretch hover-glow">
+        <div class="col-md-3">
+            <div class="p-4 card text-center neon-border stat-card neon-pulse">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2" class="mx-auto mb-2">
+                    <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+                </svg>
+                <h6>0-100 km/h</h6>
+                <h4 class="text-primary fw-bold">3.2s</h4>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-4 card text-center neon-border stat-card">
+                <i class="bi bi-speedometer2 text-primary fs-1 mb-2"></i>
+                <h6 class="opacity-75">Top Speed</h6>
+                <h4 class="text-primary fw-bold">250 km/h</h4>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-4 card text-center neon-border stat-card">
+                <i class="bi bi-cpu text-primary fs-1 mb-2"></i>
+                <h6 class="opacity-75">Engine</h6>
+                <h4 class="text-primary fw-bold">V8 TwinTurbo</h4>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="p-4 card text-center neon-border stat-card">
+                <i class="bi bi-lightning-charge text-primary fs-1 mb-2"></i>
+                <h6 class="opacity-75">Horsepower</h6>
+                <h4 class="text-primary fw-bold hp-animate">625 HP</h4>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mt-5 reveal">
+
+<div class="alert alert-success d-flex align-items-center animate__animated animate__fadeInLeft">
+<i class="bi bi-check-circle-fill me-2"></i> Engine Status: Optimal
+</div>
+
+<div class="alert alert-warning d-flex align-items-center animate__animated animate__fadeInLeft" style="animation-delay: 0.2s">
+<i class="bi bi-exclamation-triangle-fill me-2"></i> System Check: All sensors active
+</div>
+
+<div class="alert alert-danger d-flex align-items-center animate__animated animate__fadeInLeft" style="animation-delay: 0.4s">
+<i class="bi bi-slash-circle me-2"></i> Traction Control: Off (Track Mode)
+</div>
+
+</div>
+
+
+<!-- CAROUSEL -->
+
+<div class="container mt-5 reveal">
+
+<div class="carousel slide rounded-4 overflow-hidden shadow-2xl"
+id="carousel"
+data-bs-ride="carousel">
+
+<div class="carousel-inner">
+
+<div class="carousel-item active">
+
+<img src="https://i.pinimg.com/736x/4f/ff/b2/4fffb2625da37624d7b9570723e8ee31.jpg" class="animate__animated animate__flipInY"
+class="d-block w-100">
+
+<div class="carousel-caption">
+<h5>Slide 1</h5>
+<p>BMW</p>
+</div>
+
+</div>
+
+<div class="carousel-item">
+
+<img src="https://i.pinimg.com/1200x/3d/6f/a2/3d6fa211a6f1ad737d3c9d50f43f1e28.jpg" class="animate__animated animate__flipInX"
+class="d-block w-100">
+
+<div class="carousel-caption">
+<h5>Slide 2</h5>
+<p>Beauty</p>
+</div>
+
+</div>
+
+<div class="carousel-item">
+
+<img src="https://i.pinimg.com/1200x/8f/7b/45/8f7b45678747a6dc2bb400d6fcceb7f0.jpg" class="animate__animated animate__flipInY"
+class="d-block w-100">
+
+<div class="carousel-caption">
+<h5>Slide 3</h5>
+<p>Beast</p>
+</div>
+
+</div>
+
+</div>
+
+<button class="carousel-control-prev"
+data-bs-target="#carousel"
+data-bs-slide="prev">
+
+<span class="carousel-control-prev-icon">
+</span>
+
+</button>
+
+<button class="carousel-control-next"
+data-bs-target="#carousel"
+data-bs-slide="next">
+
+<span class="carousel-control-next-icon">
+</span>
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- PRICING -->
+
+<div class="container mt-5 reveal">
+<div class="flex-center-between mb-5">
+    <h2 class="mb-0">Ownership Plans</h2>
+    <p class="text-primary mb-0 fw-bold">Flexible Financing Available <i class="bi bi-arrow-right"></i></p>
+</div>
+    
+<div class="row text-center">
+
+<div class="col-md-4">
+
+<div class="card pricing-card shadow h-100 p-3 animate__animated animate__fadeInLeft">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+Basic
+</h3>
+
+<h4 class="text-primary display-6 fw-bold">
+₹199
+</h4>
+
+<button class="btn btn-primary w-100">
+Buy
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card pricing-card shadow border-primary h-100 p-3 animate__animated animate__pulse animate__infinite" style="animation-duration: 3s;">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+Finance
+<span class="badge bg-primary">
+Popular
+</span>
+</h3>
+
+<h4 class="text-primary display-6 fw-bold">
+₹4,99,000/mo
+</h4>
+
+<button class="btn btn-primary w-100">
+Buy
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-md-4">
+
+<div class="card pricing-card shadow h-100 p-3 animate__animated animate__fadeInRight">
+
+<div class="card-body">
+
+<h3 class="fw-bold">
+Full Purchase
+</h3>
+
+<h4 class="text-primary display-6 fw-bold">
+₹1.8 Cr
+</h4>
+
+<button class="btn btn-dark w-100">
+Buy
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- COMPARISON TABLE -->
+<div class="container mt-5 reveal">
+    <div class="text-center mb-5">
+        <h2 class="text-gradient fw-bold">Compare Plans</h2>
+    </div>
+    <div class="table-responsive comparison-table-container animate__animated animate__fadeInUp">
+        <table class="table table-dark table-hover border-secondary align-middle text-center">
+            <thead>
+                <tr>
+                    <th class="text-start">Features</th>
+                    <th>Basic</th>
+                    <th class="text-primary">Finance</th>
+                    <th>Full Purchase</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="text-start">Test Drive Access</td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                </tr>
+                <tr>
+                    <td class="text-start">Track Day Events</td>
+                    <td><i class="bi bi-x-lg text-danger"></i></td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                </tr>
+                <tr>
+                    <td class="text-start">Priority Service</td>
+                    <td><i class="bi bi-x-lg text-danger"></i></td>
+                    <td><i class="bi bi-x-lg text-danger"></i></td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                </tr>
+                <tr>
+                    <td class="text-start">Custom Livery</td>
+                    <td><i class="bi bi-x-lg text-danger"></i></td>
+                    <td><i class="bi bi-dash-lg text-warning"></i></td>
+                    <td><i class="bi bi-check2 text-success"></i></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- GALLERY -->
+
+<div id="gallery-section" class="container mt-5 reveal">
+<div class="d-flex flex-column align-items-center mb-5">
+    <h2 class="mb-2">M Series Gallery</h2>
+    <div class="animate__animated animate__stretch" style="width: 60px; height: 4px; background: #3b82f6; border-radius: 2px;"></div>
+</div>
+<div class="row gallery">
+
+<div class="col-lg-4 col-md-6 mb-4">
+<img src="https://i.pinimg.com/736x/17/cd/73/17cd73c579fd80d4a34947ae5ac54932.jpg" class="img-fluid rounded shadow-lg hover-rotate gallery-item" alt="BMW M Performance">
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+<img src="https://i.pinimg.com/736x/b4/fe/9a/b4fe9ab716f508e0517d09e94217e1f0.jpg" class="img-fluid rounded shadow-lg gallery-item" alt="BMW M Performance">
+</div>
+
+<div class="col-lg-4 col-md-6 mb-4">
+<img src="https://i.pinimg.com/736x/6d/96/d3/6d96d324685da074083e52920892f161.jpg" class="img-fluid rounded shadow-lg gallery-item" alt="BMW M Performance">
+</div>
+
+</div>
+
+</div>
+
+
+<!-- FORM -->
+
+<div class="container mt-5 reveal">
+
+<div class="booking-card">
+    <div class="row align-items-center g-5">
+        <div class="col-lg-5 mb-4 mb-lg-0">
+            <h2 class="display-4 fw-bold text-gradient-animate mb-4">Book a Test Drive</h2>
+            <p class="lead opacity-75 mb-4" style="letter-spacing: 0.5px;">Feel the adrenaline of M Power firsthand. Schedule your exclusive driving experience today and redefine your limits.</p>
+            <div class="d-flex align-items-center mt-5 p-3 glass-panel" style="width: fit-content;">
+                <div class="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+                    <i class="bi bi-calendar-check text-primary fs-4"></i>
+                </div>
+                <div>
+                    <h6 class="mb-0">Instant Confirmation</h6>
+                    <small class="opacity-50">24/7 Online Booking</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7">
+            <form class="needs-validation" novalidate>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold text-primary text-uppercase">Full Name</label>
+                        <input type="text" class="form-control bg-dark text-white border-secondary p-3 rounded-4 shadow-sm" style="border-left: 4px solid #3b82f6; transition: 0.3s;" placeholder="John Doe" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label small fw-bold text-primary text-uppercase">Email Address</label>
+                        <input type="email" class="form-control bg-dark text-white border-secondary p-3 rounded-4 shadow-sm" style="border-left: 4px solid #3b82f6; transition: 0.3s;" placeholder="john@example.com" required>
+                    </div>
+                    <div class="col-12">
+                        <div class="form-check mt-2">
+                            <input type="checkbox" class="form-check-input" id="policy" required>
+                            <label class="form-check-label small opacity-75" for="policy">
+                                I agree to the BMW Privacy Policy and terms of service.
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary mt-4 w-100 py-3 fw-bold rounded-pill shadow-lg">
+                    CONFIRM BOOKING <i class="bi bi-chevron-right ms-2"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
+
+
+<!-- TOOLTIP -->
+
+<div class="container mt-5 py-5 text-center reveal glass-panel">
+
+<button 
+class="btn btn-outline-info rounded-pill px-5 py-3 me-3 btn-cyber"
+data-bs-toggle="tooltip"
+title="Locate nearest BMW Center">
+<i class="bi bi-geo-alt me-2"></i>Find Dealer
+</button>
+ 
+<button
+class="btn btn-danger rounded-pill px-5 py-3 btn-cyber"
+data-bs-toggle="popover"
+data-bs-placement="top"
+title="Exclusive Offer"
+data-bs-content="Get 20% off on your first Premium purchase!">
+<i class="bi bi-gift me-2"></i>Exclusive Offer
+</button>
+
+</div>
+
+<!-- MODAL -->
+
+<div class="modal fade"
+id="infoModal">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content border-0 shadow-lg" style="background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(20px);">
+
+<div class="modal-header border-bottom border-secondary">
+
+<h5 class="modal-title text-gradient fw-bold">
+M PERFORMANCE INSIGHTS
+</h5>
+
+<button class="btn-close btn-close-white"
+data-bs-dismiss="modal">
+</button>
+
+</div>
+
+<div class="modal-body p-4">
+    <div class="d-flex align-items-center mb-3">
+        <div class="bg-primary rounded-circle p-2 me-3">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        </div>
+        <p class="mb-0 fw-bold">Precision Engineering</p>
+    </div>
+    <p class="text-light opacity-75">
+        BMW M Power represents the perfect harmony between track-ready performance and daily drivability. Every component is tuned at the Nürburgring to ensure the "Ultimate Driving Machine" isn't just a slogan, but a promise. 
+        The M5 CS, for instance, features a 4.4-liter V8 engine with M TwinPower Turbo technology, delivering a staggering 627 horsepower.
+    </p>
+    <div class="accordion accordion-flush bg-transparent" id="carSpecsAccordion">
+        <div class="accordion-item bg-transparent border-secondary">
+            <h2 class="accordion-header">
+                <button class="accordion-button collapsed bg-transparent text-white" type="button" data-bs-toggle="collapse" data-bs-target="#specOne">
+                    Technical Specifications
+                </button>
+            </h2>
+            <div id="specOne" class="accordion-collapse collapse" data-bs-parent="#carSpecsAccordion">
+                <div class="accordion-body text-light opacity-75">
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><i class="text-primary me-2">✓</i> <strong>Adaptive M Suspension:</strong> Adjusts in milliseconds to road conditions.</li>
+                        <li class="mb-2"><i class="text-primary me-2">✓</i> <strong>CFRP Components:</strong> Carbon Fiber roof and hood for weight reduction.</li>
+                        <li class="mb-2"><i class="text-primary me-2">✓</i> <strong>M xDrive:</strong> Rear-biased AWD system for maximum traction and agility.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer border-top border-secondary">
+    <button type="button" class="btn btn-outline-light rounded-pill px-4" data-bs-dismiss="modal">Close</button>
+    <button type="button" class="btn btn-primary rounded-pill px-4 shadow">Configure Yours</button>
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- GALLERY MODAL -->
+<div class="modal fade" id="galleryModal" tabindex="-1" aria-labelledby="galleryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="galleryModalLabel">Gallery</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img src="" id="modalImage" class="img-fluid" alt="Gallery Image">
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+
+<footer class="bg-dark text-white text-center p-3 mt-auto">
+
+<div class="container">
+    <p class="mb-0">BMW Group India © 2026 | BY BMW Lover</p>
+    <div class="mt-2 fs-4"><i class="bi bi-facebook mx-2"></i><i class="bi bi-instagram mx-2"></i><i class="bi bi-twitter-x mx-2"></i></div>
+</div>
+
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+<script>
+
+const tooltipTriggerList =
+document.querySelectorAll('[data-bs-toggle="tooltip"]')
+
+tooltipTriggerList.forEach(
+t => new bootstrap.Tooltip(t)
+)
+
+const popoverTriggerList =
+document.querySelectorAll('[data-bs-toggle="popover"]')
+
+popoverTriggerList.forEach(
+p => new bootstrap.Popover(p)
+)
+
+ScrollReveal().reveal('.reveal', {
+    delay: 200,
+    distance: '50px',
+    origin: 'bottom',
+    duration: 1000,
+    interval: 200
+});
+
+window.onscroll = function() {
+    let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    let scrolled = (winScroll / height) * 100;
+    document.getElementById("scrollBar").style.width = scrolled + "%";
+};
+
+const galleryItems = document.querySelectorAll('.gallery-item');
+const modalImage = document.getElementById('modalImage');
+
+galleryItems.forEach(item => {
+    item.addEventListener('click', () => {
+        const imageUrl = item.src;
+        modalImage.src = imageUrl;
+        const galleryModal = new bootstrap.Modal(document.getElementById('galleryModal'));
+        galleryModal.show();
+    });
+});
+
+</script>
+</body>
+</html>
